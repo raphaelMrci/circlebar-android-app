@@ -1,4 +1,4 @@
-package com.raphaelMrci.circlebar
+package com.raphaelMrci.circlebar.network
 
 import com.raphaelMrci.circlebar.models.*
 import retrofit2.Response
@@ -51,7 +51,7 @@ interface ApiService {
     ): Response<MyResponse>
 
     @GET("drinks")
-    suspend fun getDrinks(@Header("Authorization") token: String): Response<Drink>
+    suspend fun getDrinks(@Header("Authorization") token: String): Response<MutableList<Drink>>
 
     @POST("drinks")
     suspend fun createDrink(

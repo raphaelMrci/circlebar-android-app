@@ -3,8 +3,7 @@ package com.raphaelMrci.circlebar
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.ProgressBar
+import com.raphaelMrci.circlebar.network.SocketHandler
 
 class PreparingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

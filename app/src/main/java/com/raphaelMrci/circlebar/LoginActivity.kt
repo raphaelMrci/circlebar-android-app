@@ -1,5 +1,6 @@
-package com.raphaelMrci.circlebar.ui.login
+package com.raphaelMrci.circlebar
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
@@ -7,11 +8,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.raphaelMrci.circlebar.ApiClient
+import com.raphaelMrci.circlebar.admin.AdminActivity
 
-import com.raphaelMrci.circlebar.R
-import com.raphaelMrci.circlebar.TOKEN
 import com.raphaelMrci.circlebar.models.Login
+import com.raphaelMrci.circlebar.network.ApiClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -44,7 +44,9 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                     val content = response.body()
                     if (content != null) {
                         Log.d("LOGIN", content.toString())
-                        TOKEN = content.token.toString()
+                        LOGIN_TOKEN = content.token.toString()
+                        val intent = Intent(this@LoginActivity, AdminActivity::class.java)
+                        startActivity(intent)
                         finish()
                     }
                 } else {

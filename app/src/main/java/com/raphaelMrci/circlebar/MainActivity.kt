@@ -2,13 +2,13 @@ package com.raphaelMrci.circlebar
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.raphaelMrci.circlebar.ui.login.LoginActivity
+import com.raphaelMrci.circlebar.network.ApiClient
+import com.raphaelMrci.circlebar.network.SocketHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -17,7 +17,7 @@ import kotlin.coroutines.CoroutineContext
 
 const val COCKTAIL_ID = "com.raphaelMrci.circlebar.COCKTAIL_ID"
 
-var TOKEN = ""
+var LOGIN_TOKEN = ""
 
 class MainActivity : AppCompatActivity(), CoroutineScope {
     override fun onCreate(savedInstanceState: Bundle?) {

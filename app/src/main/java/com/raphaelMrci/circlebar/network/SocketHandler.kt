@@ -1,4 +1,4 @@
-package com.raphaelMrci.circlebar
+package com.raphaelMrci.circlebar.network
 
 import io.socket.client.IO
 import io.socket.client.Socket
