@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">CIRCLE BAR</string>
     <string name="scrollview_desc">Hey, I am a description…</string>
+    <string name="validate_button">Lancer la préparation</string>
+    <string name="preparing_title">Préparation en cours</string>
+    <string name="finished_title">Préparation terminée !</string>
+    <string name="finished_description">Votre boisson est prête, veuillez récupérer votre verre.</string>
+    <string name="waiting_title">Votre commande a bien été enregistrée.</string>
+    <string name="waiting_description">Veuillez patienter…</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>
