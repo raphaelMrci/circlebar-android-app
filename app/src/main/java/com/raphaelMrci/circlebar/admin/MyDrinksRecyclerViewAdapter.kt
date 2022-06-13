@@ -24,7 +24,7 @@ import kotlin.coroutines.CoroutineContext
 
 class MyDrinksRecyclerViewAdapter(
     private val values: MutableList<Drink>,
-    var myContext: Context
+    private var myContext: Context
 ) : RecyclerView.Adapter<MyDrinksRecyclerViewAdapter.ViewHolder>(), CoroutineScope {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,7 +46,7 @@ class MyDrinksRecyclerViewAdapter(
         holder.editBtn.setOnClickListener {
             myContext.startActivity(Intent(myContext, EditDrinkActivity::class.java).apply {
                 putExtra("name", item.name)
-                putExtra("icon", item.name)
+                putExtra("icon", item.icon)
                 putExtra("id", item.id)
             })
         }
@@ -57,8 +57,8 @@ class MyDrinksRecyclerViewAdapter(
             builder.setPositiveButton("Supprimer") { _,_ ->
                 item.id?.let { it1 -> deleteDrink(it1) }
             }
+            builder.setNegativeButton("Annuler") {_,_ -> }
             builder.create().show()
-            // builder.setNegativeButton("Annuler", )
         }
     }
 

@@ -1,12 +1,16 @@
 package com.raphaelMrci.circlebar.admin
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.view.View.OnFocusChangeListener
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
-import androidx.viewpager.widget.ViewPager
-import androidx.appcompat.app.AppCompatActivity
 import com.raphaelMrci.circlebar.databinding.ActivityAdminBinding
+
 
 class AdminActivity : AppCompatActivity() {
 
@@ -18,16 +22,11 @@ class AdminActivity : AppCompatActivity() {
         binding = ActivityAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        val fab: FloatingActionButton = binding.fab
+        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager, fab)
         val viewPager: ViewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
-        val fab: FloatingActionButton = binding.fab
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
     }
 }

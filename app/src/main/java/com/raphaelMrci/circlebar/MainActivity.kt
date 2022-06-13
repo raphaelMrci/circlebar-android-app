@@ -2,6 +2,7 @@ package com.raphaelMrci.circlebar
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
@@ -48,6 +49,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
                 if (response.isSuccessful && response.body() != null) {
                     val content = response.body()
+
+                    Log.d("GET", content.toString())
 
                     if (content != null) {
                         for ((i, cocktail) in content.withIndex()) {
