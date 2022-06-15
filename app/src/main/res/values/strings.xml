@@ -25,4 +25,7 @@
     <string name="icon">Icône</string>
     <string name="name">Name</string>
     <string name="edit_description">Modifier une boisson</string>
+    <string name="edit_cocktail">Edit cocktail</string>
+    <string name="add_drink_to_recipe">Ajouter une boisson</string>
+    <string name="save">Enregistrer</string>
 </resources>

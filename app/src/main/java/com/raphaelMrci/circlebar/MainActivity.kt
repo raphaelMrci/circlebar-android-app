@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.raphaelMrci.circlebar.models.Cocktail
 import com.raphaelMrci.circlebar.network.ApiClient
 import com.raphaelMrci.circlebar.network.SocketHandler
 import kotlinx.coroutines.CoroutineScope
@@ -19,6 +20,7 @@ import kotlin.coroutines.CoroutineContext
 const val COCKTAIL_ID = "com.raphaelMrci.circlebar.COCKTAIL_ID"
 
 var LOGIN_TOKEN = ""
+var COCKTAILS: MutableList<Cocktail>? = null
 
 class MainActivity : AppCompatActivity(), CoroutineScope {
     override fun onCreate(savedInstanceState: Bundle?) {

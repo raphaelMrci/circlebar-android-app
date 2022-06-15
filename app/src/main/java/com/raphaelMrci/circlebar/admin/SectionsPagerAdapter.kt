@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.raphaelMrci.circlebar.R
+import com.raphaelMrci.circlebar.admin.cocktails.CocktailsFragment
+import com.raphaelMrci.circlebar.admin.drinks.DrinksFragment
 
 private val TAB_TITLES = arrayOf(
     R.string.tab_text_1,

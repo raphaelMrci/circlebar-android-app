@@ -1,4 +1,4 @@
-package com.raphaelMrci.circlebar.admin
+package com.raphaelMrci.circlebar.admin.cocktails
 
 import android.app.AlertDialog
 import android.content.Context
@@ -16,7 +16,7 @@ import kotlin.coroutines.CoroutineContext
 
 class MyCocktailsRecyclerViewAdapter(
     private val values: MutableList<Cocktail>,
-    private val mContext: Context
+    private var mContext: Context
 ) : RecyclerView.Adapter<MyCocktailsRecyclerViewAdapter.ViewHolder>(), CoroutineScope {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,9 +36,6 @@ class MyCocktailsRecyclerViewAdapter(
         holder.cocktailName.text = item.name
         holder.editBtn.setOnClickListener {
             mContext.startActivity(Intent(mContext, EditCocktailActivity::class.java).apply {
-                putExtra("name", item.name)
-                putExtra("icon", item.name)
-                putExtra("recipe", item.recipe.toString())
                 putExtra("id", item.id)
             })
         }

@@ -1,4 +1,4 @@
-package com.raphaelMrci.circlebar.admin
+package com.raphaelMrci.circlebar.admin.drinks
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
