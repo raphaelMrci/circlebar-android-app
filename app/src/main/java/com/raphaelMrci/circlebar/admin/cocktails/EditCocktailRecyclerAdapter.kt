@@ -9,10 +9,10 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.raphaelMrci.circlebar.R
-import com.raphaelMrci.circlebar.databinding.FragmentDrinksBinding
+import com.raphaelMrci.circlebar.models.Drink
 import com.raphaelMrci.circlebar.models.RecipeItem
 
-class EditCocktailRecyclerAdapter(private val mContext: Context, private val values: MutableList<RecipeItem>) : RecyclerView.Adapter<EditCocktailRecyclerAdapter.ViewHolder>() {
+class EditCocktailRecyclerAdapter(private val mContext: Context, private val values: MutableList<RecipeItem>, private val drinks: MutableList<Drink>) : RecyclerView.Adapter<EditCocktailRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
         val name: TextView = v.findViewById(R.id.recipe_item_name)
@@ -28,8 +28,11 @@ class EditCocktailRecyclerAdapter(private val mContext: Context, private val val
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val newList = values[position]
-        // TODO: get drinks list from API & get name of drink
-        holder.name.text = newList.drink_id.toString()
+        drinks.forEach { drink ->
+            if (drink.id == newList.drink_id) {
+                holder.name.text = drink.name
+            }
+        }
         holder.qty.setText(newList.qty.toString())
         holder.deleteBtn.setOnClickListener {
             // TODO: delete recipe item locally

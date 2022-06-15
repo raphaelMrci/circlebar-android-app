@@ -1,18 +1,25 @@
 package com.raphaelMrci.circlebar.admin.cocktails
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.raphaelMrci.circlebar.COCKTAILS
+import com.raphaelMrci.circlebar.LOGIN_TOKEN
 import com.raphaelMrci.circlebar.R
 import com.raphaelMrci.circlebar.models.Cocktail
+import com.raphaelMrci.circlebar.network.ApiClient
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class EditCocktailActivity : AppCompatActivity() {
+class EditCocktailActivity : AppCompatActivity(), CoroutineScope {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_cocktail)
@@ -31,23 +38,29 @@ class EditCocktailActivity : AppCompatActivity() {
 
         COCKTAILS?.forEach { cocktail ->
             if (cocktail.id == id) {
-                Log.d("EDIT", "GOOD !!")
-                initEditCocktail(cocktail, nameField, iconField, recyclerView)
+                nameField.setText(cocktail.name)
+                iconField.setText(cocktail.icon.toString())
+                initRecycler(recyclerView, cocktail, this)
             }
-            Log.d("EDIT", "next")
         }
-        Log.d("EDIT", "next steps")
     }
 
-    private fun initEditCocktail(cocktail: Cocktail,
-                                 nameField: EditText,
-                                 iconField: EditText,
-                                 recyclerView: RecyclerView
-    ) {
-        nameField.setText(cocktail.name)
-        iconField.setText(cocktail.icon.toString())
+    private fun initRecycler(recyclerView: RecyclerView, cocktail: Cocktail, mContext: Context) {
+        launch(Dispatchers.Main) {
+            try {
+                val response = ApiClient.apiService.getDrinks("Bearer $LOGIN_TOKEN")
 
-        recyclerView.layoutManager = LinearLayoutManager(this@EditCocktailActivity)
-        recyclerView.adapter = cocktail.recipe?.let { EditCocktailRecyclerAdapter(this, it) }
+                if (response.isSuccessful && response.body() != null) {
+                    recyclerView.layoutManager = LinearLayoutManager(mContext)
+                    recyclerView.adapter = cocktail.recipe?.let { EditCocktailRecyclerAdapter(mContext, it,
+                        response.body()!!
+                    ) }
+                }
+            } catch (e: Exception) {
+                // TODO: print toast
+            }
+        }
     }
+
+    override val coroutineContext: CoroutineContext = Job()
 }
