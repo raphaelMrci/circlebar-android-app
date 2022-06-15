@@ -1,5 +1,6 @@
 package com.raphaelMrci.circlebar.admin.cocktails
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,7 @@ import com.raphaelMrci.circlebar.R
 import com.raphaelMrci.circlebar.models.Drink
 import com.raphaelMrci.circlebar.models.RecipeItem
 
-class EditCocktailRecyclerAdapter(private val mContext: Context, private val values: MutableList<RecipeItem>, private val drinks: MutableList<Drink>) : RecyclerView.Adapter<EditCocktailRecyclerAdapter.ViewHolder>() {
+class EditCocktailRecyclerAdapter(private val mContext: Context, private var values: MutableList<RecipeItem>, private val drinks: MutableList<Drink>, private val recyclerView: RecyclerView) : RecyclerView.Adapter<EditCocktailRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
         val name: TextView = v.findViewById(R.id.recipe_item_name)
@@ -35,7 +36,19 @@ class EditCocktailRecyclerAdapter(private val mContext: Context, private val val
         }
         holder.qty.setText(newList.qty.toString())
         holder.deleteBtn.setOnClickListener {
-            // TODO: delete recipe item locally
+            AlertDialog.Builder(mContext)
+                .setTitle("Remove ${holder.name.text} ?")
+                .setMessage("Are you sure you want to remove this drink from the cocktail recipe ?")
+                .setPositiveButton("Remove") { d,_ ->
+                    values.removeAt(position)
+                    recyclerView.adapter = EditCocktailRecyclerAdapter(mContext, values, drinks, recyclerView)
+                    d.dismiss()
+                }
+                .setNegativeButton("Cancel") { d,_ ->
+                    d.dismiss()
+                }
+                .create()
+                .show()
         }
     }
 

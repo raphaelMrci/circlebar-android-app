@@ -16,6 +16,7 @@
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/activity_preparing.xml" value="0.17083333333333334" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/activity_validate.xml" value="0.18489583333333334" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/activity_waiting.xml" value="0.13541666666666666" />
+        <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/dialog_add_drink.xml" value="0.33" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/fragment_admin.xml" value="0.17083333333333334" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/fragment_cocktail.xml" value="0.190625" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/fragment_cocktail_list.xml" value="0.1644021739130435" />
@@ -32,5 +33,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.33" />
+      </ProjectState>
+    </option>
   </component>
 </project>

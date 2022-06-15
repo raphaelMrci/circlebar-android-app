@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+
+        <TextView
+            android:id="@+id/add_drink_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addDrink_dialog"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/add_drink_name_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name" />
+
+        <EditText
+            android:id="@+id/add_drink_name_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/name"
+            android:autofillHints="" />
+
+        <TextView
+            android:id="@+id/add_drink_icon_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/icon"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/add_drink_icon_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:autofillHints=""
+            android:hint="@string/icon"/>
+    </LinearLayout>
+
+</LinearLayout>

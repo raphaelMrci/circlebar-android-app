@@ -8,10 +8,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import com.raphaelMrci.circlebar.LOGIN_TOKEN
 import com.raphaelMrci.circlebar.databinding.FragmentCocktailBinding
 import com.raphaelMrci.circlebar.models.Cocktail
+import com.raphaelMrci.circlebar.network.ApiClient
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class MyCocktailsRecyclerViewAdapter(
@@ -43,16 +48,44 @@ class MyCocktailsRecyclerViewAdapter(
             val builder = AlertDialog.Builder(mContext)
             builder.setTitle("Delete ${item.name} ?")
             builder.setMessage("Are you sure you want to delete this cocktail ?")
-            builder.setPositiveButton("Supprimer") { _,_ ->
+            builder.setPositiveButton("Delete") { d,_ ->
                 item.id?.let { it1 -> deleteCocktail(it1) }
+                d.dismiss()
             }
-            builder.setNegativeButton("Annuler") {_,_ -> }
+            builder.setNegativeButton("Cancel") { d,_ ->
+                d.dismiss()
+            }
             builder.create().show()
         }
     }
 
     private fun deleteCocktail(id: Int) {
+        launch(Dispatchers.Main) {
+            try {
+                val result = ApiClient.apiService.deleteCocktail(id, "Bearer $LOGIN_TOKEN")
 
+                if (result.isSuccessful) {
+                    Toast.makeText(
+                        mContext,
+                        "Cocktail successfully deleted.",
+                        Toast.LENGTH_SHORT
+                        //TODO: reload cocktails list
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        mContext,
+                        "Unable to delete this cocktail...",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } catch(e: Exception) {
+                Toast.makeText(
+                    mContext,
+                    e.toString(),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 
     override fun getItemCount(): Int = values.size

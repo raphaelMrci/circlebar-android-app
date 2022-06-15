@@ -3,6 +3,7 @@ package com.raphaelMrci.circlebar.admin.drinks
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -51,11 +52,11 @@ class MyDrinksRecyclerViewAdapter(
         holder.deleteBtn.setOnClickListener {
             val builder = AlertDialog.Builder(myContext)
             builder.setTitle("Delete ${item.name} ?")
-            builder.setMessage("Are you sure you want to delete tis drink ? Be sure it is not included on an existing cocktail before deleting it.")
-            builder.setPositiveButton("Supprimer") { _,_ ->
+            builder.setMessage("Are you sure you want to delete this drink ? Be sure it is not included on an existing cocktail before deleting it.")
+            builder.setPositiveButton("Delete") { _,_ ->
                 item.id?.let { it1 -> deleteDrink(it1) }
             }
-            builder.setNegativeButton("Annuler") {_,_ -> }
+            builder.setNegativeButton("Cancel") {_,_ -> }
             builder.create().show()
         }
     }
@@ -85,6 +86,12 @@ class MyDrinksRecyclerViewAdapter(
                     Toast.LENGTH_LONG
                 ).show()
             }
+        }
+    }
+
+    fun updateDrinks(newList: MutableList<Drink>?) {
+        if (newList != null) {
+
         }
     }
 

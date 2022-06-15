@@ -12,6 +12,7 @@ import com.raphaelMrci.circlebar.COCKTAILS
 import com.raphaelMrci.circlebar.LOGIN_TOKEN
 import com.raphaelMrci.circlebar.R
 import com.raphaelMrci.circlebar.models.Cocktail
+import com.raphaelMrci.circlebar.models.RecipeItem
 import com.raphaelMrci.circlebar.network.ApiClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,7 +34,7 @@ class EditCocktailActivity : AppCompatActivity(), CoroutineScope {
         val recyclerView = findViewById<RecyclerView>(R.id.edit_cocktail_recyclerview)
 
         if (id == -1) {
-            // TODO: Toast to indicate that an error occured. No id present
+            // TODO: Toast to indicate that an error occurred. No id present
         }
 
         COCKTAILS?.forEach { cocktail ->
@@ -52,9 +53,11 @@ class EditCocktailActivity : AppCompatActivity(), CoroutineScope {
 
                 if (response.isSuccessful && response.body() != null) {
                     recyclerView.layoutManager = LinearLayoutManager(mContext)
-                    recyclerView.adapter = cocktail.recipe?.let { EditCocktailRecyclerAdapter(mContext, it,
-                        response.body()!!
-                    ) }
+                    recyclerView.adapter = cocktail.recipe?.let {
+                        var recipeCopy: MutableList<RecipeItem> = ArrayList()
+                        recipeCopy.addAll(it)
+                        EditCocktailRecyclerAdapter(mContext, recipeCopy, response.body()!!, recyclerView)
+                    }
                 }
             } catch (e: Exception) {
                 // TODO: print toast
