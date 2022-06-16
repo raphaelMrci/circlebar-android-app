@@ -40,7 +40,11 @@ class EditCocktailActivity : AppCompatActivity(), CoroutineScope {
         val recyclerView = findViewById<RecyclerView>(R.id.edit_cocktail_recyclerview)
 
         if (id == -1) {
-            // TODO: Toast to indicate that an error occurred. No id present
+            Toast.makeText(
+                this,
+                "Unable to edit cocktail...",
+                Toast.LENGTH_LONG
+            ).show()
         }
 
         addNewItem.setOnClickListener {
@@ -103,7 +107,6 @@ class EditCocktailActivity : AppCompatActivity(), CoroutineScope {
                         }
 
                     if (response != null && response.isSuccessful) {
-                        //TODO: exit
                         Toast.makeText(
                             this@EditCocktailActivity,
                             "Cocktail successfully edited.",
@@ -112,7 +115,11 @@ class EditCocktailActivity : AppCompatActivity(), CoroutineScope {
                         finish()
                     }
                 } catch (e: Exception) {
-                    // TODO: display toast
+                    Toast.makeText(
+                        this@EditCocktailActivity,
+                        "Error occurred : ${e.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
@@ -136,7 +143,11 @@ class EditCocktailActivity : AppCompatActivity(), CoroutineScope {
                     }
                 }
             } catch (e: Exception) {
-                // TODO: print toast
+                Toast.makeText(
+                    this@EditCocktailActivity,
+                    "Error occurred : ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
