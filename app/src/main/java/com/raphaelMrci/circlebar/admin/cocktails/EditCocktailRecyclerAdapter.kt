@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.raphaelMrci.circlebar.R
 import com.raphaelMrci.circlebar.models.Drink
@@ -49,6 +50,12 @@ class EditCocktailRecyclerAdapter(private val mContext: Context, private var val
                 }
                 .create()
                 .show()
+        }
+        holder.qty.addTextChangedListener {
+            val tmpTxt = holder.qty.text.toString()
+            if (tmpTxt != "") {
+                values[position].qty = tmpTxt.toInt()
+            }
         }
     }
 
