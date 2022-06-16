@@ -16,7 +16,7 @@ import com.raphaelMrci.circlebar.models.RecipeItem
 
 class EditCocktailRecyclerAdapter(private val mContext: Context, private var values: MutableList<RecipeItem>, private val drinks: MutableList<Drink>, private val recyclerView: RecyclerView) : RecyclerView.Adapter<EditCocktailRecyclerAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
+    inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val name: TextView = v.findViewById(R.id.recipe_item_name)
         val qty: EditText = v.findViewById(R.id.recipe_qty_input)
         val deleteBtn: Button = v.findViewById(R.id.recipe_delete_btn)

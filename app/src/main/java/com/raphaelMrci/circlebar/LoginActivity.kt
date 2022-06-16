@@ -27,7 +27,6 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
         val loginBtn = findViewById<Button>(R.id.login)
-        val progressBar = findViewById<ProgressBar>(R.id.loading)
 
         loginBtn.setOnClickListener {
             tryLogin(username.text.toString(), password.text.toString())

@@ -29,4 +29,5 @@
     <string name="add_drink_to_recipe">Ajouter une boisson</string>
     <string name="save">Enregistrer</string>
     <string name="addDrink_dialog">Ajouter une nouvelle boisson</string>
+    <string name="new_cocktail_title">New cocktail</string>
 </resources>
