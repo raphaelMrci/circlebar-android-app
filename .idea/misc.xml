@@ -7,7 +7,7 @@
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1685" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.190234375" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout-w936dp/activity_login.xml" value="0.16632513661202186" />
-        <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/activity_admin.xml" value="0.176" />
+        <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/activity_admin.xml" value="0.33" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/activity_edit_cocktail.xml" value="0.26614583333333336" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/activity_edit_drink.xml" value="0.1" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/activity_finished.xml" value="0.33" />
@@ -18,6 +18,7 @@
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/activity_validate.xml" value="0.18489583333333334" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/activity_waiting.xml" value="0.13541666666666666" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/dialog_add_drink.xml" value="0.33" />
+        <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/dialog_userdata.xml" value="0.3625" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/fragment_admin.xml" value="0.17083333333333334" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/fragment_cocktail.xml" value="0.190625" />
         <entry key="..\:/depot/circlebar-android-app/app/src/main/res/layout/fragment_cocktail_list.xml" value="0.1644021739130435" />

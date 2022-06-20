@@ -31,4 +31,10 @@
     <string name="addDrink_dialog">Ajouter une nouvelle boisson</string>
     <string name="new_cocktail_title">New cocktail</string>
     <string name="retrieved_cup">Gobelet récupéré</string>
+    <string name="admin_settings">user</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="userdata_title">Edit username/password</string>
+    <string name="username_label">Username</string>
+    <string name="password_label">Password</string>
 </resources>
