@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
             startActivity(intent)
         }
 
-        SocketHandler.setSocket("10.188.154.201")
+        SocketHandler.setSocket("192.168.1.163")
 
         val mSocket = SocketHandler.getSocket()
 

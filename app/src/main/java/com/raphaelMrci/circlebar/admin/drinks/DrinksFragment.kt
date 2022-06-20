@@ -25,36 +25,26 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class DrinksFragment(private var mContext: Context, private val fab: FloatingActionButton) : Fragment(), CoroutineScope {
+class DrinksFragment(private val mContext: Context, private val fab: FloatingActionButton) : Fragment(), CoroutineScope {
 
     @Deprecated("Deprecated in Java")
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
 
-        val inflater = LayoutInflater.from(mContext)
-
         if (isVisibleToUser) {
+            val inflater = LayoutInflater.from(mContext)
+
             fab.show()
             fab.setOnClickListener {
                 val v = inflater.inflate(R.layout.dialog_add_drink, null)
                 val name = v.findViewById<EditText>(R.id.add_drink_name_input)
                 val icon = v.findViewById<EditText>(R.id.add_drink_icon_input)
 
-                val recv = view?.findViewById<RecyclerView>(R.id.drinks_list)
-
                 val dialog = AlertDialog.Builder(mContext)
                         .setView(v)
                         .setPositiveButton("Add") { d,_ ->
                             if (name.text.toString() != "" && icon.text.toString() != "") {
-                                if (recv != null) {
-                                    insertNewDrink(Drink(name.text.toString(), icon.text.toString().toInt()), recv)
-                                } else {
-                                    Toast.makeText(
-                                        mContext,
-                                        "Unable to update list...",
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                }
+                                insertNewDrink(Drink(name.text.toString(), icon.text.toString().toInt()))
                             }
                             d.dismiss()
                         }
@@ -91,7 +81,7 @@ class DrinksFragment(private var mContext: Context, private val fab: FloatingAct
         return view
     }
 
-    private fun insertNewDrink(newDrink: Drink, recv: RecyclerView) {
+    private fun insertNewDrink(newDrink: Drink) {
         launch(Dispatchers.Main) {
             try {
                 val response = ApiClient.apiService.createDrink(newDrink, "Bearer $LOGIN_TOKEN")
@@ -102,7 +92,6 @@ class DrinksFragment(private var mContext: Context, private val fab: FloatingAct
                         "Drink successfully added.",
                         Toast.LENGTH_SHORT
                     ).show()
-                    getDrinks(recv)
                 } else {
                     Toast.makeText(
                         mContext,

@@ -8,6 +8,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.raphaelMrci.circlebar.R
 import com.raphaelMrci.circlebar.admin.cocktails.CocktailsFragment
 import com.raphaelMrci.circlebar.admin.drinks.DrinksFragment
+import com.raphaelMrci.circlebar.admin.slots.SlotsFragment
 
 private val TAB_TITLES = arrayOf(
     R.string.tab_text_1,
@@ -22,7 +23,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager, pr
         return when (position) {
             0 -> DrinksFragment.newInstance(context, fab)
             1 -> CocktailsFragment.newInstance(context, fab)
-            2 -> PlaceholderFragment.newInstance(3)
+            2 -> SlotsFragment.newInstance(context, fab)
             else -> PlaceholderFragment.newInstance(position + 1)
         }
     }

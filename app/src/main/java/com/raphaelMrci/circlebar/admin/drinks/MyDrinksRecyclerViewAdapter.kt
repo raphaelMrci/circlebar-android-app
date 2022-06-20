@@ -89,12 +89,6 @@ class MyDrinksRecyclerViewAdapter(
         }
     }
 
-    fun updateDrinks(newList: MutableList<Drink>?) {
-        if (newList != null) {
-
-        }
-    }
-
     override fun getItemCount(): Int = values.size
 
     inner class ViewHolder(binding: FragmentDrinksBinding) : RecyclerView.ViewHolder(binding.root) {
