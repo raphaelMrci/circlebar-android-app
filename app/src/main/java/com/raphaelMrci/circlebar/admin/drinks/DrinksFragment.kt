@@ -1,6 +1,5 @@
 package com.raphaelMrci.circlebar.admin.drinks
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
@@ -64,6 +63,9 @@ class DrinksFragment(private val mContext: Context, private val fab: FloatingAct
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = name.text.toString() != "" && icon.text.toString() != ""
                 }
             }
+            if (view is RecyclerView) {
+                getDrinks(view as RecyclerView)
+            }
         }
     }
 
@@ -92,6 +94,11 @@ class DrinksFragment(private val mContext: Context, private val fab: FloatingAct
                         "Drink successfully added.",
                         Toast.LENGTH_SHORT
                     ).show()
+                    if (view is RecyclerView) {
+                        getDrinks(view as RecyclerView)
+                    } else {
+                        Log.w("DRINK", "ERROOOR !! It's not a RecyclerView !")
+                    }
                 } else {
                     Toast.makeText(
                         mContext,
@@ -118,11 +125,15 @@ class DrinksFragment(private val mContext: Context, private val fab: FloatingAct
                     val content = response.body()
 
                     if (content != null) {
-                        view.adapter = MyDrinksRecyclerViewAdapter(content, mContext)
+                        view.adapter = MyDrinksRecyclerViewAdapter(content, mContext, view)
                     }
                 }
             } catch (e: Exception) {
-                // TODO: display toast
+                Toast.makeText(
+                    mContext,
+                    "Error Occurred: ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }

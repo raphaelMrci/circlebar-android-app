@@ -23,7 +23,8 @@ import kotlin.coroutines.CoroutineContext
 
 class MyDrinksRecyclerViewAdapter(
     private val values: MutableList<Drink>,
-    private var myContext: Context
+    private var myContext: Context,
+    private val recv: RecyclerView
 ) : RecyclerView.Adapter<MyDrinksRecyclerViewAdapter.ViewHolder>(), CoroutineScope {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -72,6 +73,21 @@ class MyDrinksRecyclerViewAdapter(
                         "Drink successfully deleted.",
                         Toast.LENGTH_SHORT
                     ).show()
+                    launch(Dispatchers.Main) {
+                        try {
+                            val response = ApiClient.apiService.getDrinks("Bearer $LOGIN_TOKEN")
+
+                            if (response.isSuccessful && response.body() != null) {
+                                val content = response.body()
+
+                                if (content != null) {
+                                    recv.adapter = MyDrinksRecyclerViewAdapter(content, myContext, recv)
+                                }
+                            }
+                        } catch (e: Exception) {
+                            // TODO: display toast
+                        }
+                    }
                 } else {
                     Toast.makeText(
                         myContext,

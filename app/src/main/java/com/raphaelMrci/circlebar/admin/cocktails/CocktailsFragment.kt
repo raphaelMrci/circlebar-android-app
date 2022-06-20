@@ -35,6 +35,11 @@ class CocktailsFragment(private val mContext: Context, private val fab: Floating
                 mContext.startActivity(Intent(mContext, NewCocktailActivity::class.java))
             }
         }
+        if (view is RecyclerView) {
+            getCocktails(view as RecyclerView)
+        } else {
+            Log.w("COCKTAIL", "Cocktail view is not a RecyclerView")
+        }
     }
 
     override fun onCreateView(

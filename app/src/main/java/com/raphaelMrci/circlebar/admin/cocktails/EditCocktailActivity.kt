@@ -21,6 +21,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import okhttp3.Dispatcher
 import kotlin.coroutines.CoroutineContext
 
 class EditCocktailActivity : AppCompatActivity(), CoroutineScope {
@@ -96,7 +97,7 @@ class EditCocktailActivity : AppCompatActivity(), CoroutineScope {
         }
 
         saveCocktail.setOnClickListener {
-            launch {
+            launch(Dispatchers.Main) {
                 try {
                     newCocktail?.name = nameField.text.toString()
                     newCocktail?.icon = iconField.text.toString().toInt()

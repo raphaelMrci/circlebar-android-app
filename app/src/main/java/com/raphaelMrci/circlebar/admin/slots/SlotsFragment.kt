@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.raphaelMrci.circlebar.LOGIN_TOKEN
 import com.raphaelMrci.circlebar.R
@@ -28,12 +29,9 @@ class SlotsFragment(private val mContext: Context, private val fab: FloatingActi
         if (isVisibleToUser) {
             fab.hide()
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // getSlots()
+        if (view is RecyclerView) {
+            getSlots(view as RecyclerView)
+        }
     }
 
     override fun onCreateView(
@@ -58,18 +56,30 @@ class SlotsFragment(private val mContext: Context, private val fab: FloatingActi
 
                 if (response.isSuccessful) {
                     launch(Dispatchers.Main) {
-                        val response1 = ApiClient.apiService.getDrinks("Bearer $LOGIN_TOKEN")
+                        try {
+                            val response1 = ApiClient.apiService.getDrinks("Bearer $LOGIN_TOKEN")
 
-                        if (response1.isSuccessful) {
-                            recv.adapter = response.body()?.let { slots ->
-                                slots.sortBy { slot -> slot.id }
-                                response1.body()?.let { it1 -> MySlotsRecyclerViewAdapter(slots, it1, mContext) }
+                            if (response1.isSuccessful) {
+                                recv.adapter = response.body()?.let { slots ->
+                                    slots.sortBy { it.id }
+                                    response1.body()?.let { it1 -> MySlotsRecyclerViewAdapter(slots, it1, mContext) }
+                                }
                             }
+                        } catch (e: Exception) {
+                            Toast.makeText(
+                                mContext,
+                                "Error Occurred: ${e.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
                 }
             } catch (e: Exception) {
-                // TODO: Toast
+                Toast.makeText(
+                    mContext,
+                    "Error Occurred: ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
